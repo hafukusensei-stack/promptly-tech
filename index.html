@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promptly Tech | Websites That Work</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Promptly Logo" />
+      <h1>Promptly Tech</h1>
+    </div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h2 id="typewriter"></h2>
+    <p class="fade-in">Professional websites for modern businesses, starting at just <strong>$50</strong>.</p>
+    <button onclick="scrollToSection('pricing')">View Pricing</button>
+  </section>
+
+  <section id="about" class="fade-section">
+    <h3>Why Promptly?</h3>
+    <p>We build interactive, modern, and lightning-fast websites designed to impress your clients and help your business grow — all at an affordable price.</p>
+  </section>
+
+  <section id="pricing" class="fade-section">
+    <h3>Pricing Plans</h3>
+    <div class="price-cards">
+      <div class="card">
+        <h4>Basic</h4>
+        <p class="price">$50</p>
+        <p>Single Page<br>Responsive Design<br>Quick Delivery</p>
+      </div>
+      <div class="card highlight">
+        <h4>Standard</h4>
+        <p class="price">$120</p>
+        <p>3–5 Pages<br>Custom Layout<br>Basic SEO</p>
+      </div>
+      <div class="card">
+        <h4>Premium</h4>
+        <p class="price">$200</p>
+        <p>Full Website<br>Animations + Effects<br>Priority Support</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="fade-section">
+    <h3>Get in Touch</h3>
+    <p>DM us on <strong>@promptly.tech</strong> or email <strong>promptly.ai.bot@gmail.com</strong></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Promptly Tech. All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promptly</title>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-weight: 600;
+      font-size: 2rem;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .logo-icon {
+      color: #A259FF; /* purple accent */
+      font-size: 2.3rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    .logo-text {
+      color: #ffffff;
+    }
+
+    .logo-text .dot {
+      color: #A259FF;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 0.85;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <span class="logo-icon">⚡</span>
+    <span class="logo-text">Promptly<span class="dot">.</span>tech</span>
+  </div>
+</body>
+</html>
+
