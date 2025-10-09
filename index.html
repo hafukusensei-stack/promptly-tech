@@ -1,180 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promptly Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #3d0066, #6f00ff);
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #7b2ff7, #f107a3);
       color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       overflow-x: hidden;
     }
 
     header {
-      padding: 40px;
+      margin-bottom: 40px;
+      animation: fadeIn 1s ease forwards;
     }
 
-    h1 {
+    header h1 {
       font-size: 3rem;
-      margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
 
-    p {
-      font-size: 1.2rem;
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 5px;
     }
 
     .preview-card {
-      background: rgba(0, 0, 0, 0.75);
-      border-radius: 20px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.4);
-      padding: 25px;
-      width: 400px;
-      margin: 50px auto;
-      text-align: left;
-    }
-
-    .preview-header {
-      background: #1a1a1a;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 15px;
-      text-align: center;
-      color: #ccc;
-      font-weight: 600;
-    }
-
-    .preview-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .preview-footer a {
-      color: #b27dff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .preview-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .preview-buttons button {
-      background: rgba(255,255,255,0.1);
-      color: white;
-      border: none;
-      border-radius: 25px;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: 0.3s;
-    }
-
-    .preview-buttons button:hover {
-      background: rgba(255,255,255,0.25);
-    }
-
-    .container {
-      margin: 50px auto;
-      max-width: 600px;
       background: rgba(255, 255, 255, 0.1);
       padding: 30px;
-      border-radius: 15px;
-      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      max-width: 500px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 25px;
+      transition: 0.3s ease;
+      animation: slideUp 1.2s ease forwards;
     }
 
-    input, textarea, button {
-      width: 100%;
-      margin: 10px 0;
-      padding: 12px;
+    .preview-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    button {
+      background: linear-gradient(135deg, #7b2ff7, #f107a3);
       border: none;
+      padding: 15px 35px;
+      border-radius: 10px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(241,7,163,0.3);
+    }
+
+    button:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(241,7,163,0.5);
+    }
+
+    #contact-form {
+      display: none;
+      background: rgba(255,255,255,0.15);
+      padding: 25px;
+      border-radius: 12px;
+      margin-top: 20px;
+      backdrop-filter: blur(12px);
+      max-width: 480px;
+      animation: fadeSlideUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #contact-form.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
       border-radius: 8px;
+      border: none;
+      margin: 8px 0;
       font-size: 1rem;
     }
 
-    button[type="submit"] {
-      background: #7a3cff;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
+    input:focus, textarea:focus {
+      outline: 2px solid #f107a3;
+      box-shadow: 0 0 8px rgba(241,7,163,0.5);
     }
 
-    button[type="submit"]:hover {
-      background: #6220d0;
+    .success-message {
+      margin-top: 15px;
+      color: #00ffcc;
+      display: none;
+      font-weight: 600;
     }
 
-    footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      opacity: 0.8;
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes slideUp {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeSlideUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🚀 Promptly Tech</h1>
-    <p>Building powerful websites and AI experiences for businesses worldwide.</p>
+    <h1>Promptly Tech</h1>
+    <p>Creative, affordable, and powerful websites for your business.</p>
   </header>
 
   <div class="preview-card">
-    <div class="preview-header">Promptly — Example site preview</div>
-    <div class="preview-footer">
-      <strong>Acme Coffee</strong>
-      <a href="#">Book a table</a>
-    </div>
-    <p>Beautiful imagery • Fast loading • Mobile-first layout</p>
-    <div class="preview-buttons">
-      <button>Live Chat</button>
-      <button>Online Menu</button>
-      <button>SEO Basics</button>
-    </div>
+    <h2>Website Packages</h2>
+    <p>💻 3-page website: <strong>$50</strong></p>
+    <p>🌐 5-page website: <strong>$100</strong></p>
+    <p>🚀 10-page website: <strong>$200</strong></p>
+    <br>
+    <p>DM us on <b>promptly.tech</b> or email us at <b>promptly.ai.bot@gmail.com</b></p>
   </div>
 
-  <div class="container">
-    <h2>Contact Us</h2>
-    <form id="contact-form">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="email" id="email" placeholder="Your Email" required />
-      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
+  <button id="openFormBtn">Send Request</button>
 
-  <footer>
-    <p>Email us at promptly.ai.bot@gmail.com | DM us @promptly.tech</p>
-  </footer>
+  <form id="contact-form">
+    <input type="text" id="name" placeholder="Your name" required>
+    <input type="email" id="email" placeholder="Your email" required>
+    <textarea id="message" placeholder="Your request..." rows="4" required></textarea>
+    <button type="submit">Send</button>
+    <p class="success-message" id="successMessage">✅ Request sent successfully!</p>
+  </form>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     (function() {
       emailjs.init("OUuZvDtunFg4_NTJI");
     })();
 
+    const openBtn = document.getElementById("openFormBtn");
     const form = document.getElementById("contact-form");
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
 
+    openBtn.addEventListener("click", () => {
+      form.classList.toggle("show");
+      if (form.classList.contains("show")) {
+        form.style.display = "block";
+        setTimeout(() => form.style.opacity = "1", 50);
+      } else {
+        form.style.opacity = "0";
+        setTimeout(() => form.style.display = "none", 400);
+      }
+    });
+
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
       const params = {
         from_name: document.getElementById("name").value,
-        email_id: document.getElementById("email").value,
-        message: document.getElementById("message").value,
+        from_email: document.getElementById("email").value,
+        message: document.getElementById("message").value
       };
 
       emailjs.send("service_pd6sbut", "template_0cmjtjp", params)
-        .then(function(response) {
-          alert("✅ Message sent successfully!");
-          form.reset();
-        }, function(error) {
-          alert("❌ Failed to send message. Please try again later.");
-          console.error(error);
-        });
+        .then(() => {
+          document.getElementById("successMessage").style.display = "block";
+          this.reset();
+          setTimeout(() => {
+            document.getElementById("successMessage").style.display = "none";
+          }, 4000);
+        })
+        .catch(() => alert("Something went wrong. Try again later."));
     });
   </script>
 </body>
